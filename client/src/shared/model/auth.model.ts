@@ -16,6 +16,14 @@ export interface IResponseLoginData {
 	token: string;
 }
 
+export interface IErrorResponse {
+	response: {
+		data: {
+			message: string;
+		};
+	};
+}
+
 export interface IResponseLogin {
 	data: IResponseLoginData;
 	status: number;
