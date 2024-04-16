@@ -19,7 +19,7 @@ export interface IResponseLoginData {
 export interface IErrorResponse {
 	response: {
 		data: {
-			message: string;
+			message: string[];
 		};
 	};
 }

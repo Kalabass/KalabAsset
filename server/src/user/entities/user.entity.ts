@@ -1,4 +1,3 @@
-import { Category } from 'src/category/entities/category.entity';
 import { RefreshToken } from 'src/refresh_token/entities/refresh_token.entity';
 import { Transaction } from 'src/transaction/entities/transaction.entity';
 import { Wallet } from 'src/wallet/entities/wallet.entity';
@@ -6,8 +5,6 @@ import {
 	Column,
 	Entity,
 	JoinColumn,
-	JoinTable,
-	ManyToMany,
 	OneToMany,
 	OneToOne,
 	PrimaryGeneratedColumn,
@@ -38,10 +35,6 @@ export class User {
 
 	@OneToMany(() => Transaction, transaction => transaction.user)
 	transactions: Transaction[];
-
-	@ManyToMany(() => Category, category => category.users)
-	@JoinTable()
-	categories: Category[];
 
 	@OneToOne(() => RefreshToken)
 	@JoinColumn()

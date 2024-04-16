@@ -33,6 +33,9 @@ export class WalletService {
 			where: {
 				user: { id },
 			},
+			order: {
+				id: 'ASC',
+			},
 		});
 
 		return wallets;

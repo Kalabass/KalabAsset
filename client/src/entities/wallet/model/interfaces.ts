@@ -1,5 +1,5 @@
 export interface IWallet {
-	id: number;
+	id?: number;
 	name: string;
 	amount: number;
 }

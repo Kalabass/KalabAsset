@@ -14,7 +14,7 @@ export class CategoryService {
 
 	async create(createCategoryDto: CreateCategoryDto) {
 		const isExist = await this.categoryRepository.findBy({
-			title: createCategoryDto.title,
+			title: createCategoryDto.title.toLowerCase(),
 		});
 
 		if (isExist.length)
@@ -27,8 +27,8 @@ export class CategoryService {
 		return await this.categoryRepository.save(newCategory);
 	}
 
-	findAll() {
-		return `This action returns all category`;
+	async findAll() {
+		return await this.categoryRepository.find();
 	}
 
 	findOne(id: number) {

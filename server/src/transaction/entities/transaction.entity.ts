@@ -1,10 +1,13 @@
 import { Category } from 'src/category/entities/category.entity';
 import { User } from 'src/user/entities/user.entity';
+import { Wallet } from 'src/wallet/entities/wallet.entity';
 import {
 	Column,
 	CreateDateColumn,
 	Entity,
+	JoinColumn,
 	ManyToOne,
+	OneToOne,
 	PrimaryGeneratedColumn,
 	UpdateDateColumn,
 } from 'typeorm';
@@ -23,15 +26,19 @@ export class Transaction {
 	@Column()
 	amount: number;
 
+	@CreateDateColumn()
+	createdAt: Date;
+
+	@UpdateDateColumn()
+	updatedAt: Date;
+
 	@ManyToOne(() => User, user => user.transactions)
 	user: User;
 
 	@ManyToOne(() => Category, category => category.transactions)
 	category: Category;
 
-	@CreateDateColumn()
-	createdAt: Date;
-
-	@UpdateDateColumn()
-	updatedAt: Date;
+	@OneToOne(() => Wallet, wallet => wallet.transaction)
+	@JoinColumn()
+	wallet: Wallet;
 }

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Wallet } from '../../../entities/wallet/ui';
+import { Wallet } from '../../../entities/wallet/ui/Wallet';
 import { AddWallet } from '../../../features/addWallet/ui';
 import { AddWalletForm } from '../../../features/addWalletForm/ui';
 import { useAddWalletModalStore } from '../../../shared/stores/add.wallet.modal.store';

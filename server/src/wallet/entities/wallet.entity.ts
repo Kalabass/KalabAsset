@@ -1,5 +1,12 @@
+import { Transaction } from 'src/transaction/entities/transaction.entity';
 import { User } from 'src/user/entities/user.entity';
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import {
+	Column,
+	Entity,
+	ManyToOne,
+	OneToOne,
+	PrimaryGeneratedColumn,
+} from 'typeorm';
 
 @Entity('wallets')
 export class Wallet {
@@ -13,4 +20,7 @@ export class Wallet {
 
 	@ManyToOne(() => User, user => user.wallets)
 	user: User;
+
+	@OneToOne(() => Transaction, transaction => transaction.wallet)
+	transaction: Transaction;
 }

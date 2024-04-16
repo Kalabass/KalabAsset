@@ -1,10 +1,12 @@
 import { useMutation } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import styled from 'styled-components';
 import { authService } from '../../../shared/api/auth.service';
 import { useInput } from '../../../shared/hooks/useInput';
 import { setTokenToLocalStorage } from '../../../shared/lib/localStorage.helper';
 import {
+	IErrorResponse,
 	IResponseLogin,
 	IResponseLoginData,
 } from '../../../shared/model/auth.model';
@@ -56,7 +58,7 @@ export const RegForm: React.FC = () => {
 			navigate('/main');
 		},
 		//@ts-ignore
-		onError: (data: IResponseLoginData) => console.log(data),
+		onError: (error: IErrorResponse) => toast(error.response.data.message[0]),
 	});
 
 	const onClickHandler = (e: React.FormEvent<HTMLFormElement>) => {
@@ -68,8 +70,16 @@ export const RegForm: React.FC = () => {
 		<StyledForm onSubmit={onClickHandler}>
 			<AuthInput placeholder='nick' {...nickNameInputProps} />
 			<AuthInput placeholder='mail' {...mailInputProps} />
-			<AuthInput placeholder='password' {...passwordInputProps} />
-			<AuthInput placeholder='password' {...passwordCheckInputProps} />
+			<AuthInput
+				placeholder='password'
+				type='password'
+				{...passwordInputProps}
+			/>
+			<AuthInput
+				placeholder='password'
+				type='password'
+				{...passwordCheckInputProps}
+			/>
 			<StyledButton>Регистрация</StyledButton>
 		</StyledForm>
 	);

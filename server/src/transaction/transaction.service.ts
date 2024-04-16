@@ -4,6 +4,7 @@ import {
 	NotFoundException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { WalletService } from 'src/wallet/wallet.service';
 import { Repository } from 'typeorm';
 import { CreateTransactionDto } from './dto/create-transaction.dto';
 import { UpdateTransactionDto } from './dto/update-transaction.dto';
@@ -13,7 +14,8 @@ import { Transaction } from './entities/transaction.entity';
 export class TransactionService {
 	constructor(
 		@InjectRepository(Transaction)
-		private readonly transactionRepository: Repository<Transaction>
+		private readonly transactionRepository: Repository<Transaction>,
+		private readonly walletService: WalletService
 	) {}
 
 	async create(createTransactionDto: CreateTransactionDto, id: number) {
@@ -25,8 +27,21 @@ export class TransactionService {
 			category: { id: +createTransactionDto.category },
 		};
 
+		const wallet = await this.walletService.findOne(
+			+createTransactionDto.wallet
+		);
+
+		if (!wallet) throw new BadRequestException('Кошелёк не найден');
+
+		wallet.amount =
+			createTransactionDto.type === 'expense'
+				? wallet.amount - createTransactionDto.amount
+				: wallet.amount + createTransactionDto.amount;
+
+		await this.walletService.update(wallet.id, wallet);
+
 		if (!newTransaction)
-			throw new BadRequestException('Something went wrong...');
+			throw new BadRequestException('Что-то пошлло не так...');
 
 		return await this.transactionRepository.save(newTransaction);
 	}
@@ -35,6 +50,9 @@ export class TransactionService {
 		const transactions = await this.transactionRepository.find({
 			where: {
 				user: { id },
+			},
+			relations: {
+				category: true,
 			},
 			order: {
 				createdAt: 'DESC',
