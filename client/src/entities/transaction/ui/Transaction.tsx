@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { ITransaction } from '../model';
+import { ITransaction } from '../model/interfaces';
 
 const Wrapper = styled.div`
 	display: flex;

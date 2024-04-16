@@ -1,5 +1,5 @@
 import instance from '../../../shared/api/axios.api';
-import { ITransaction, ITransactionAdd } from '../model';
+import { ITransaction, ITransactionAdd } from '../model/interfaces';
 
 class TransactionService {
 	async getAll() {

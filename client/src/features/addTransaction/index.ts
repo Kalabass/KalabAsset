@@ -1,1 +1,1 @@
-export { AddTransactionForm } from './ui';
+export { AddTransactionForm } from './ui/AddTransaction';

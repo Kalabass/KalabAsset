@@ -1,5 +1,5 @@
+import { Routing } from '@/pages';
 import { createGlobalStyle } from 'styled-components';
-import { Routing } from '../pages';
 import { withQueryClient, withRouter } from './providers';
 const GlobalStyle = createGlobalStyle`
   body {

@@ -1,8 +1,8 @@
+import { walletService } from '@/entities/wallet';
+import { useInput } from '@/shared/hooks/useInput';
+import { useAddWalletModalStore } from '@/shared/stores/add.wallet.modal.store';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import styled from 'styled-components';
-import { walletService } from '../../../entities/wallet/api';
-import { useInput } from '../../../shared/hooks/useInput';
-import { useAddWalletModalStore } from '../../../shared/stores/add.wallet.modal.store';
 
 const StyledForm = styled.form`
 	display: flex;

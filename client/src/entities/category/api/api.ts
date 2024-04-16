@@ -1,5 +1,5 @@
 import instance from '../../../shared/api/axios.api';
-import { ICategory } from '../model';
+import { ICategory } from '../model/interfaces';
 
 class CategoryService {
 	async getAll() {

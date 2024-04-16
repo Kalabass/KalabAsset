@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { walletService } from '../../../entities/wallet/api';
+import { walletService } from '../../../entities/wallet';
 
 export const useWallets = () => {
 	return useQuery({

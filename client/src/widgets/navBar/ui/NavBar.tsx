@@ -1,5 +1,5 @@
+import { LogOut } from '@/features/logOut';
 import styled from 'styled-components';
-import { LogOut } from '../../../features/logOut';
 
 const StyledHeader = styled.div`
 	height: 6vh;

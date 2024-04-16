@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { IAddWalletProps } from '../model';
+import { IAddWalletProps } from '../model/interfaces';
 
 const Wrapper = styled.div`
 	border: 1px black dotted;

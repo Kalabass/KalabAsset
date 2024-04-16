@@ -1,9 +1,9 @@
+import { Wallet } from '@/entities/wallet';
+import { AddWallet } from '@/features/addWallet';
+import { AddWalletForm } from '@/features/addWalletForm';
+import { useAddWalletModalStore } from '@/shared/stores/add.wallet.modal.store';
+import { Modal } from '@/shared/ui/Modal';
 import styled from 'styled-components';
-import { Wallet } from '../../../entities/wallet/ui/Wallet';
-import { AddWallet } from '../../../features/addWallet/ui';
-import { AddWalletForm } from '../../../features/addWalletForm/ui';
-import { useAddWalletModalStore } from '../../../shared/stores/add.wallet.modal.store';
-import { Modal } from '../../../shared/ui/Modal';
 import { useWallets } from '../lib';
 
 const Container = styled.div`
@@ -15,7 +15,6 @@ const Container = styled.div`
 `;
 
 export const WalletsContainer: React.FC = () => {
-	//const { token } = useTokenStore();
 	const { data, isLoading } = useWallets();
 	const { isShown, setIsShown } = useAddWalletModalStore();
 

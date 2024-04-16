@@ -1,5 +1,5 @@
+import { AuthRegForms } from '@/widgets/AuthRegForms';
 import styled from 'styled-components';
-import { AuthRegForms } from '../../../widgets/AuthRegForms/ui';
 
 const Wrapper = styled.div`
 	height: 100vh;

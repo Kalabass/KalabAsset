@@ -1,16 +1,12 @@
+import { authService } from '@/shared/api/auth.service';
+import { useInput } from '@/shared/hooks/useInput';
+import { setTokenToLocalStorage } from '@/shared/lib/localStorage.helper';
+import { IResponseLogin } from '@/shared/model/auth.model';
+import AuthInput from '@/shared/ui/AuthInput';
 import { useMutation } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import styled from 'styled-components';
-import { authService } from '../../../shared/api/auth.service';
-import { useInput } from '../../../shared/hooks/useInput';
-import { setTokenToLocalStorage } from '../../../shared/lib/localStorage.helper';
-import {
-	IErrorResponse,
-	IResponseLogin,
-	IResponseLoginData,
-} from '../../../shared/model/auth.model';
-import AuthInput from '../../../shared/ui/AuthInput';
 
 const StyledForm = styled.form`
 	display: flex;

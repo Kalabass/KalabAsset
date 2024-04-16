@@ -1,8 +1,8 @@
+import { categoryService } from '@/entities/category';
+import { transactionService } from '@/entities/transaction';
+import { useInput } from '@/shared/hooks/useInput';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import React, { useState } from 'react';
-import { categoryService } from '../../../entities/category/api';
-import { transactionService } from '../../../entities/transaction/api';
-import { useInput } from '../../../shared/hooks/useInput';
 
 export const AddTransactionForm: React.FC = () => {
 	const nameInputProps = useInput();

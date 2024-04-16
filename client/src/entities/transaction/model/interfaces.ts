@@ -1,4 +1,4 @@
-import { ICategory } from '../../category/model';
+import { ICategory } from '../../category/model/interfaces';
 import { IWallet } from '../../wallet/model/interfaces';
 
 export interface ITransaction {

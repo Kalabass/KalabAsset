@@ -1,8 +1,8 @@
+import { AuthForm } from '@/features/authentificate';
+import { RegForm } from '@/features/register';
+import SKullImgCOntainer from '@/shared/ui/SKullImgCOntainer';
 import { useState } from 'react';
 import styled from 'styled-components';
-import { AuthForm } from '../../../features/authentificate';
-import { RegForm } from '../../../features/register';
-import SKullImgCOntainer from '../../../shared/ui/SKullImgCOntainer';
 
 const Container = styled.div`
 	width: 35%;

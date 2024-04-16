@@ -1,5 +1,5 @@
+import { removeTokenFromLocalStorage } from '@/shared/lib/localStorage.helper';
 import { useNavigate } from 'react-router-dom';
-import { removeTokenFromLocalStorage } from '../../../shared/lib/localStorage.helper';
 
 export const LogOut: React.FC = () => {
 	const navigate = useNavigate();
