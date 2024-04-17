@@ -39,7 +39,7 @@ export class CategoryService {
 		return `This action updates a #${id} category`;
 	}
 
-	remove(id: number) {
-		return `This action removes a #${id} category`;
+	async remove(id: number) {
+		return await this.categoryRepository.delete(id);
 	}
 }

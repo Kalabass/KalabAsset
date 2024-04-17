@@ -60,12 +60,8 @@ export const AuthForm: React.FC = () => {
 
 	return (
 		<StyledForm onSubmit={onClickHandler}>
-			<AuthInput placeholder='mail' {...mailInputProps} />
-			<AuthInput
-				type='password'
-				placeholder='password'
-				{...passwordInputProps}
-			/>
+			<AuthInput placeholder='почта' {...mailInputProps} />
+			<AuthInput type='password' placeholder='пароль' {...passwordInputProps} />
 			<StyledButton>Вход</StyledButton>
 		</StyledForm>
 	);

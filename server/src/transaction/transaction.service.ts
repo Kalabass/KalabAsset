@@ -4,6 +4,7 @@ import {
 	NotFoundException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { CategoryService } from 'src/category/category.service';
 import { WalletService } from 'src/wallet/wallet.service';
 import { Repository } from 'typeorm';
 import { CreateTransactionDto } from './dto/create-transaction.dto';
@@ -15,16 +16,20 @@ export class TransactionService {
 	constructor(
 		@InjectRepository(Transaction)
 		private readonly transactionRepository: Repository<Transaction>,
-		private readonly walletService: WalletService
+		private readonly walletService: WalletService,
+		private readonly categoryService: CategoryService
 	) {}
 
 	async create(createTransactionDto: CreateTransactionDto, id: number) {
+		console.log(createTransactionDto);
+
 		const newTransaction = {
 			name: createTransactionDto.name,
 			amount: createTransactionDto.amount,
 			type: createTransactionDto.type,
 			user: { id },
 			category: { id: +createTransactionDto.category },
+			wallet: { id: +createTransactionDto.wallet },
 		};
 
 		const wallet = await this.walletService.findOne(
@@ -53,6 +58,7 @@ export class TransactionService {
 			},
 			relations: {
 				category: true,
+				wallet: true,
 			},
 			order: {
 				createdAt: 'DESC',

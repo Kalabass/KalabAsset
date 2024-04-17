@@ -27,19 +27,23 @@ const ModalWrapper = styled.div`
 	align-items: center;
 `;
 
+const Container = styled.div`
+	margin-left: 25%;
+`;
+
 export const Modal: React.FC<IModalProps> = ({
 	component,
 	isShown,
 	onClick,
 }) => {
 	return (
-		<>
+		<Container>
 			{isShown && (
 				<>
 					<ModalMask onClick={onClick} />
 					<ModalWrapper>{component}</ModalWrapper>
 				</>
 			)}
-		</>
+		</Container>
 	);
 };

@@ -17,11 +17,13 @@ export class AuthService {
 		const user = await this.userService.findOne(mail);
 
 		if (!user) {
-			throw new BadRequestException('No user with given email');
+			throw new BadRequestException([
+				['Пользователя с такой почтой не существует'],
+			]);
 		}
 
 		if (!bcrypt.compareSync(password, user.password)) {
-			throw new BadRequestException('Wrong password');
+			throw new BadRequestException(['Неверный пароль']);
 		}
 
 		return user;
@@ -33,31 +35,21 @@ export class AuthService {
 		password2: string,
 		nick: string
 	) {
-		console.log('hz');
 		const isExist = await this.userService.findOne(mail);
 
 		if (isExist)
-			throw new BadRequestException('User with this email already exists');
+			throw new BadRequestException([
+				['Пользователь с такой почтой уже существет'],
+			]);
 
 		if (password != password2)
-			throw new BadRequestException('Given password do not match ');
+			throw new BadRequestException(['Пароли не совпадают']);
 
 		return true;
 	}
 
 	async login(user: IUser) {
 		const { id, mail } = user;
-
-		// const refreshToken = this.refreshTokenService.generateRefreshToken({
-		// 	id,
-		// 	mail,
-		// });
-		// const accessToken = this.accessTokenService.generateAccessToken({
-		// 	id,
-		// 	mail,
-		// });
-		const refreshToken = '11';
-		const accessToken = '11';
 
 		return {
 			id,

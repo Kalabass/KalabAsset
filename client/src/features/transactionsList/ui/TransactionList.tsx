@@ -1,5 +1,13 @@
 import { Transaction, transactionService } from '@/entities/transaction';
 import { useQuery } from '@tanstack/react-query';
+import styled from 'styled-components';
+
+const Wrapper = styled.div`
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	margin: 10px;
+`;
 
 export const TransactionList: React.FC = () => {
 	const transactions = useQuery({
@@ -9,10 +17,10 @@ export const TransactionList: React.FC = () => {
 	});
 	console.log(transactions.data);
 	return (
-		<>
+		<Wrapper>
 			{transactions.data?.map(transaction => (
 				<Transaction key={transaction.id} {...transaction} />
 			))}
-		</>
+		</Wrapper>
 	);
 };

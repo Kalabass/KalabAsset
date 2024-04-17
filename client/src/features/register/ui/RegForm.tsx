@@ -50,11 +50,13 @@ export const RegForm: React.FC = () => {
 		mutationKey: ['reg'],
 		//@ts-ignore
 		onSuccess: (data: IResponseLoginData) => {
+			toast.success('Успешно!');
 			setTokenToLocalStorage(data.token);
 			navigate('/main');
 		},
 		//@ts-ignore
-		onError: (error: IErrorResponse) => toast(error.response.data.message[0]),
+		onError: (error: IErrorResponse) =>
+			toast.error(error.response.data.message[0]),
 	});
 
 	const onClickHandler = (e: React.FormEvent<HTMLFormElement>) => {
@@ -64,15 +66,11 @@ export const RegForm: React.FC = () => {
 
 	return (
 		<StyledForm onSubmit={onClickHandler}>
-			<AuthInput placeholder='nick' {...nickNameInputProps} />
-			<AuthInput placeholder='mail' {...mailInputProps} />
+			<AuthInput placeholder='имя' {...nickNameInputProps} />
+			<AuthInput placeholder='почта' {...mailInputProps} />
+			<AuthInput placeholder='пароль' type='password' {...passwordInputProps} />
 			<AuthInput
-				placeholder='password'
-				type='password'
-				{...passwordInputProps}
-			/>
-			<AuthInput
-				placeholder='password'
+				placeholder='подтверждение пароля'
 				type='password'
 				{...passwordCheckInputProps}
 			/>

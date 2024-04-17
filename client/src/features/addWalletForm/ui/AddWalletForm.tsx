@@ -41,8 +41,8 @@ export const AddWalletForm: React.FC = () => {
 		<>
 			<h1>Добавление кошелька</h1>
 			<StyledForm onSubmit={onClick}>
-				<input placeholder='title' {...walletName}></input>
-				<input placeholder='amount' {...walletAmount}></input>
+				<input placeholder='Название' {...walletName}></input>
+				<input placeholder='Сумма' {...walletAmount}></input>
 				<button>Добавить</button>
 			</StyledForm>
 		</>
