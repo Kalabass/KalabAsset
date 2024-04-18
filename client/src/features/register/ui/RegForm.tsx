@@ -1,33 +1,7 @@
-import { authService } from '@/shared/api/auth.service';
-import { useInput } from '@/shared/hooks/useInput';
-import { setTokenToLocalStorage } from '@/shared/lib/localStorage.helper';
-import { IResponseLogin } from '@/shared/model/auth.model';
+import { useInput } from '@/shared/helpers/useInput';
+import { useRegMutation } from '@/shared/helpers/useReg.mutation';
 import AuthInput from '@/shared/ui/AuthInput';
-import { useMutation } from '@tanstack/react-query';
-import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
-import styled from 'styled-components';
-
-const StyledForm = styled.form`
-	display: flex;
-	flex-direction: column;
-	gap: 10px;
-
-	width: 60%;
-
-	justify-content: center;
-	align-items: center;
-`;
-
-const StyledButton = styled.button`
-	height: 5vh;
-	width: 103%;
-	border: none;
-	border-radius: 10px;
-	background-color: rosybrown;
-
-	font-size: 4vh;
-`;
+import { StyledButton, StyledForm } from './components';
 
 export const RegForm: React.FC = () => {
 	const nickNameInputProps = useInput();
@@ -35,28 +9,11 @@ export const RegForm: React.FC = () => {
 	const passwordInputProps = useInput();
 	const passwordCheckInputProps = useInput();
 
-	const navigate = useNavigate();
-
-	const RegMutation = useMutation<IResponseLogin>({
-		mutationFn: async () => {
-			const response = await authService.signUp({
-				mail: mailInputProps.value,
-				nick: nickNameInputProps.value,
-				password: passwordInputProps.value,
-				password2: passwordCheckInputProps.value,
-			});
-			return response.data;
-		},
-		mutationKey: ['reg'],
-		//@ts-ignore
-		onSuccess: (data: IResponseLoginData) => {
-			toast.success('Успешно!');
-			setTokenToLocalStorage(data.token);
-			navigate('/main');
-		},
-		//@ts-ignore
-		onError: (error: IErrorResponse) =>
-			toast.error(error.response.data.message[0]),
+	const RegMutation = useRegMutation({
+		mail: mailInputProps.value,
+		nick: nickNameInputProps.value,
+		password: passwordInputProps.value,
+		password2: passwordCheckInputProps.value,
 	});
 
 	const onClickHandler = (e: React.FormEvent<HTMLFormElement>) => {

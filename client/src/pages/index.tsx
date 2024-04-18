@@ -5,7 +5,7 @@ import { MainPage } from './main';
 export const Routing = () => {
 	return (
 		<Routes>
-			<Route path='/main' element={<MainPage />} />
+			<Route path='/' element={<MainPage />} />
 			<Route path='/auth' element={<AuthPage />} />
 		</Routes>
 	);

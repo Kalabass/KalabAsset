@@ -1,4 +1,4 @@
-import instance from '../../../shared/api/axios.api';
+import instance from '../../../shared/instances/axios.api';
 import { ITransaction, ITransactionAdd } from '../model/interfaces';
 
 class TransactionService {

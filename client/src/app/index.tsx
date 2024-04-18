@@ -1,6 +1,7 @@
 import { Routing } from '@/pages';
 import { createGlobalStyle } from 'styled-components';
-import { withQueryClient, withRouter } from './providers';
+import { withQueryClient } from './providers/with-queryClient';
+import { withRouter } from './providers/with-router';
 const GlobalStyle = createGlobalStyle`
   body {
     margin: 0;

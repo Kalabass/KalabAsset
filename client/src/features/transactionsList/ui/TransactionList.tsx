@@ -1,21 +1,8 @@
-import { Transaction, transactionService } from '@/entities/transaction';
-import { useQuery } from '@tanstack/react-query';
-import styled from 'styled-components';
-
-const Wrapper = styled.div`
-	display: flex;
-	flex-direction: column;
-	gap: 10px;
-	margin: 10px;
-`;
+import { Transaction, useTransactions } from '@/entities/transaction';
+import { Wrapper } from './components';
 
 export const TransactionList: React.FC = () => {
-	const transactions = useQuery({
-		queryKey: ['transactions'],
-		queryFn: () => transactionService.getAll(),
-		select: ({ data }) => data,
-	});
-	console.log(transactions.data);
+	const transactions = useTransactions();
 	return (
 		<Wrapper>
 			{transactions.data?.map(transaction => (

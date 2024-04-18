@@ -1,9 +1,9 @@
+import instance from '../instances/axios.api';
 import {
 	IResponseLogin,
 	IUserLoginData,
 	IUserRegData,
 } from '../model/auth.model';
-import instance from './axios.api';
 
 class AuthService {
 	async login(user: IUserLoginData) {

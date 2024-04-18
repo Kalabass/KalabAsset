@@ -1,10 +1,9 @@
-import { Wallet } from '@/entities/wallet';
+import { useWallets, Wallet } from '@/entities/wallet';
 import { AddWallet } from '@/features/addWallet';
 import { AddWalletForm } from '@/features/addWalletForm';
 import { useAddWalletModalStore } from '@/shared/stores/add.wallet.modal.store';
 import { Modal } from '@/shared/ui/Modal';
 import styled from 'styled-components';
-import { useWallets } from '../lib';
 
 const Container = styled.div`
 	display: flex;

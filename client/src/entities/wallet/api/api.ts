@@ -1,9 +1,7 @@
-import instance from '../../../shared/api/axios.api';
+import instance from '../../../shared/instances/axios.api';
 import { IWallet } from '../model/interfaces';
 
 class WalletService {
-	private URL = 'http://localhost:5252/api/wallet';
-
 	async getAll() {
 		return await instance.get<IWallet[]>('wallet');
 	}
