@@ -1,3 +1,0 @@
-interface IContainerTitleProps {
-	title: string;
-}
