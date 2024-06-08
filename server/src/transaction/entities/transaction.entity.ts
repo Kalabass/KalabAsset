@@ -7,7 +7,6 @@ import {
 	Entity,
 	JoinColumn,
 	ManyToOne,
-	OneToOne,
 	PrimaryGeneratedColumn,
 	UpdateDateColumn,
 } from 'typeorm';
@@ -38,7 +37,7 @@ export class Transaction {
 	@ManyToOne(() => Category, category => category.transactions)
 	category: Category;
 
-	@OneToOne(() => Wallet, wallet => wallet.transaction)
+	@ManyToOne(() => Wallet, wallet => wallet.transaction)
 	@JoinColumn()
 	wallet: Wallet;
 }

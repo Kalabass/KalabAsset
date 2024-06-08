@@ -35,6 +35,18 @@ export class TransactionController {
 		return this.transactionService.findAll(+req.user.id);
 	}
 
+	@Get('categories')
+	@UseGuards(JwtAuthGuard)
+	findAllByCategory(@Req() req, @Query('type') type: string) {
+		return this.transactionService.findAllCategoriesSum(+req.user.id, type);
+	}
+
+	@Get('type')
+	@UseGuards(JwtAuthGuard)
+	findAllByType(@Req() req) {
+		return this.transactionService.findAllByTypeSum(+req.user.id);
+	}
+
 	@Get('pagination')
 	@UseGuards(JwtAuthGuard)
 	findAllWithPagination(

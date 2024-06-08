@@ -4,7 +4,13 @@ import { useWallets } from '@/entities/wallet';
 import { useInput } from '@/shared/helpers/useInput';
 import { useSelect } from '@/shared/helpers/useSelect';
 import React from 'react';
-import { StyledForm, StyledInput, StyledSelect } from './components';
+import {
+	StyledButton,
+	StyledForm,
+	StyledFormContainer,
+	StyledInput,
+	StyledSelect,
+} from './components';
 
 export const AddTransactionForm: React.FC = () => {
 	const nameInputProps = useInput();
@@ -32,27 +38,29 @@ export const AddTransactionForm: React.FC = () => {
 
 	return (
 		<StyledForm onSubmit={onSubmitHandler}>
-			<StyledInput placeholder='название' {...nameInputProps} />
-			<StyledInput placeholder='сумма' {...amountInputProps} />
-			<StyledSelect {...typeSelect}>
-				<option value={'income'}>зачисление</option>
-				<option value={'expense'}>трата</option>
-			</StyledSelect>
-			<StyledSelect {...walletSelect}>
-				{wallets.data?.map(wallet => (
-					<option key={wallet.id} value={wallet.id}>
-						{wallet.name}
-					</option>
-				))}
-			</StyledSelect>
-			<StyledSelect {...categoriesSelect}>
-				{categories.data?.map(category => (
-					<option key={category.id} value={category.id}>
-						{category.title}
-					</option>
-				))}
-			</StyledSelect>
-			<button>Добавить транзакцию</button>
+			<StyledFormContainer>
+				<StyledInput placeholder='название' {...nameInputProps} />
+				<StyledInput placeholder='сумма' {...amountInputProps} />
+				<StyledSelect {...typeSelect}>
+					<option value={'income'}>зачисление</option>
+					<option value={'expense'}>трата</option>
+				</StyledSelect>
+				<StyledSelect {...walletSelect}>
+					{wallets.data?.map(wallet => (
+						<option key={wallet.id} value={wallet.id}>
+							{wallet.name}
+						</option>
+					))}
+				</StyledSelect>
+				<StyledSelect {...categoriesSelect}>
+					{categories.data?.map(category => (
+						<option key={category.id} value={category.id}>
+							{category.title}
+						</option>
+					))}
+				</StyledSelect>
+				<StyledButton>Добавить транзакцию</StyledButton>
+			</StyledFormContainer>
 		</StyledForm>
 	);
 };

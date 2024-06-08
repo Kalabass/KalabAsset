@@ -1,4 +1,5 @@
 import { RefreshToken } from 'src/refresh_token/entities/refresh_token.entity';
+import { Target } from 'src/target/entities/target.entity';
 import { Transaction } from 'src/transaction/entities/transaction.entity';
 import { Wallet } from 'src/wallet/entities/wallet.entity';
 import {
@@ -35,6 +36,9 @@ export class User {
 
 	@OneToMany(() => Transaction, transaction => transaction.user)
 	transactions: Transaction[];
+
+	@OneToMany(() => Target, target => target.user)
+	targets: Target[];
 
 	@OneToOne(() => RefreshToken)
 	@JoinColumn()

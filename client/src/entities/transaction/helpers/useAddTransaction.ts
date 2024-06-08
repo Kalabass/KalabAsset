@@ -12,8 +12,8 @@ export const useAddTransactionMutation = (transaction: ITransactionAdd) => {
 			queryClient.invalidateQueries({ queryKey: ['transactions'] });
 			queryClient.invalidateQueries({ queryKey: ['wallets'] });
 		},
-		onError: () => {
-			alert('hui');
+		onError: (error: Error) => {
+			console.error(error.response.data.message);
 		},
 	});
 };

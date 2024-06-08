@@ -13,14 +13,18 @@ const ModalMask = styled.div`
 `;
 
 const ModalWrapper = styled.div`
-	position: absolute;
-	background-color: white;
+	position: fixed;
+
+	background-color: lightblue;
+
 	width: 50%;
 	height: 50%;
-	border: 1px solid black;
-	border-radius: 7px;
+
+	border-radius: 9px;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+
 	z-index: 999;
+
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -28,22 +32,25 @@ const ModalWrapper = styled.div`
 `;
 
 const Container = styled.div`
-	margin-left: 25%;
+	padding-left: 25%;
+	position: absolute;
+	margin-top: -250px;
+	background-color: lightblue;
 `;
 
 export const Modal: React.FC<IModalProps> = ({
+	onClick,
 	component,
 	isShown,
-	onClick,
 }) => {
 	return (
-		<Container>
-			{isShown && (
-				<>
-					<ModalMask onClick={onClick} />
+		isShown && (
+			<>
+				<Container>
 					<ModalWrapper>{component}</ModalWrapper>
-				</>
-			)}
-		</Container>
+				</Container>
+				<ModalMask onClick={onClick} />
+			</>
+		)
 	);
 };

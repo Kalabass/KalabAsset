@@ -1,4 +1,4 @@
-import { DateFormat } from '../helpers/dateFormater';
+import { UseDateFormat } from '../../../shared/helpers/useDateFormater';
 import { ITransaction } from '../model/interfaces';
 import { MiniWrapper, Wrapper } from './components';
 
@@ -10,7 +10,7 @@ export const Transaction: React.FC<ITransaction> = ({
 	createdAt,
 	wallet,
 }) => {
-	const formattedDate = DateFormat(createdAt);
+	const formattedDate = UseDateFormat(createdAt);
 
 	return (
 		<Wrapper>

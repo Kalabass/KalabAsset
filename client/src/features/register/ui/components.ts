@@ -16,7 +16,7 @@ export const StyledButton = styled.button`
 	width: 103%;
 	border: none;
 	border-radius: 10px;
-	background-color: rosybrown;
+	background-color: lightblue;
 
 	font-size: 4vh;
 `;

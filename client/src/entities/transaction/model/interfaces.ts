@@ -20,3 +20,13 @@ export interface ITransactionAdd {
 	category: number;
 	wallet: number;
 }
+
+export interface ITransactionByCategory {
+	category_title: string;
+	sum: number;
+}
+
+export interface ITransactionByType {
+	transactions_type: string;
+	sum: number;
+}

@@ -1,17 +1,19 @@
 import { AuthForm } from '@/features/authentificate';
 import { RegForm } from '@/features/register';
-import SKullImgCOntainer from '@/shared/ui/SKullImgCOntainer';
 import { useState } from 'react';
 import styled from 'styled-components';
 
 const Container = styled.div`
 	width: 35%;
+
 	height: 600px;
+
 	min-height: 500px;
 	min-width: 200px;
-	background-color: #c1c2bd;
+
+	background-color: #1098c5;
 	border-radius: 10px;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+	box-shadow: 0 0 50px rgba(0, 0, 0, 0.2);
 
 	display: grid;
 	grid-template-rows: 1fr 1fr 1fr;
@@ -42,6 +44,7 @@ const StyledButton = styled.button`
 	margin-top: 10px;
 
 	text-decoration: underline;
+	color: white;
 `;
 
 export const AuthRegForms: React.FC = () => {
@@ -50,7 +53,6 @@ export const AuthRegForms: React.FC = () => {
 	return (
 		<Container>
 			<GridItem>
-				<SKullImgCOntainer width={'40%'} />
 				<h1>KalabAsset</h1>
 			</GridItem>
 			<GridItem>{isReg ? <RegForm /> : <AuthForm />}</GridItem>

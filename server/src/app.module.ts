@@ -11,6 +11,7 @@ import { RefreshTokenModule } from './refresh_token/refresh_token.module';
 import { TransactionModule } from './transaction/transaction.module';
 import { UserModule } from './user/user.module';
 import { WalletModule } from './wallet/wallet.module';
+import { TargetModule } from './target/target.module';
 
 @Module({
 	imports: [
@@ -42,6 +43,7 @@ import { WalletModule } from './wallet/wallet.module';
 		CategoryModule,
 		MailModule,
 		ConfigModule,
+		TargetModule,
 	],
 	controllers: [AppController],
 	providers: [AppService],

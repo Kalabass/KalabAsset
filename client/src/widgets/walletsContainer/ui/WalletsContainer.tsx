@@ -1,14 +1,26 @@
 import { useWallets, Wallet } from '@/entities/wallet';
 import { AddWallet } from '@/features/addWallet';
 import { AddWalletForm } from '@/features/addWalletForm';
-import { useAddWalletModalStore } from '@/shared/stores/add.wallet.modal.store';
+import { useAddWalletModalStore } from '@/shared/stores/add.wallet.modal.store.tsx';
+import ContainerTitle from '@/shared/ui/ContainerTitle';
 import { Modal } from '@/shared/ui/Modal';
+
 import styled from 'styled-components';
+
+const WalletsContainerWrapper = styled.div`
+	box-sizing: border-box;
+	border-radius: 9px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+	padding: 10px;
+
+	margin-bottom: 10px;
+
+	background-color: #1098c5;
+`;
 
 const Container = styled.div`
 	display: flex;
 	flex-direction: column;
-	padding: 10px;
 `;
 
 const WalletContainer = styled.div`
@@ -44,34 +56,37 @@ const WalletContainer = styled.div`
 
 export const WalletsContainer: React.FC = () => {
 	const { data, isLoading } = useWallets();
-	const { isShown, setIsShown } = useAddWalletModalStore();
+	const { isShown, setIsShown, component, setComponent } =
+		useAddWalletModalStore();
 
 	return (
 		<>
-			<Container>
-				<WalletContainer>
-					{isLoading ? (
-						<div>loading...</div>
-					) : data?.length ? (
-						data.map(wallet => <Wallet key={wallet.id} {...wallet}></Wallet>)
-					) : (
-						<div>NOt found</div>
-					)}
-				</WalletContainer>
-				<>
-					<AddWallet
-						onClick={() => {
-							setIsShown(true);
-						}}
-					/>
-				</>
-			</Container>
+			<WalletsContainerWrapper>
+				<ContainerTitle title='КОШЕЛЬКИ:' />
+				<Container>
+					<WalletContainer>
+						<AddWallet
+							onClick={() => {
+								setIsShown(true);
+								setComponent(<AddWalletForm />);
+							}}
+						/>
+						{isLoading ? (
+							<div>loading...</div>
+						) : data?.length ? (
+							data.map(wallet => <Wallet key={wallet.id} {...wallet}></Wallet>)
+						) : (
+							<div></div>
+						)}
+					</WalletContainer>
+				</Container>
+			</WalletsContainerWrapper>
 			<Modal
-				isShown={isShown}
 				onClick={() => {
 					setIsShown(false);
 				}}
 				component={<AddWalletForm />}
+				isShown={isShown}
 			></Modal>
 		</>
 	);

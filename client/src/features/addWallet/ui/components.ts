@@ -1,20 +1,23 @@
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
-	border: 1px solid black;
+	background-color: rgb(173, 216, 230, 0.8);
+
+	box-sizing: border-box;
+	border: 1px dashed darkblue;
 	border-radius: 9px;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 
-	padding: 5px;
-
-	min-width: 200px;
 	width: 200px;
+	height: 60px;
 
-	height: 20px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+
+	padding-inline: 5px;
 
 	font-weight: 600;
 
-	margin-top: 10px;
-
-	background-color: #98ff98;
+	cursor: pointer;
 `;

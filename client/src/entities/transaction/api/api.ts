@@ -1,9 +1,24 @@
 import instance from '../../../shared/instances/axios.api';
-import { ITransaction, ITransactionAdd } from '../model/interfaces';
+import {
+	ITransaction,
+	ITransactionAdd,
+	ITransactionByCategory,
+	ITransactionByType,
+} from '../model/interfaces';
 
 class TransactionService {
 	async getAll() {
 		return await instance.get<ITransaction[]>('transaction');
+	}
+
+	async getAllByCategory(type: string) {
+		return await instance.get<ITransactionByCategory[]>(
+			`transaction/categories?type=${type}`
+		);
+	}
+
+	async getAllByType() {
+		return await instance.get<ITransactionByType[]>('transaction/type');
 	}
 
 	async getOne(id: number) {

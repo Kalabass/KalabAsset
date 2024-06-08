@@ -4,7 +4,7 @@ import {
 	Column,
 	Entity,
 	ManyToOne,
-	OneToOne,
+	OneToMany,
 	PrimaryGeneratedColumn,
 } from 'typeorm';
 
@@ -22,6 +22,6 @@ export class Wallet {
 	@ManyToOne(() => User, user => user.wallets)
 	user: User;
 
-	@OneToOne(() => Transaction, transaction => transaction.wallet)
+	@OneToMany(() => Transaction, transaction => transaction.wallet)
 	transaction: Transaction;
 }

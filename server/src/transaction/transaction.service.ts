@@ -21,8 +21,6 @@ export class TransactionService {
 	) {}
 
 	async create(createTransactionDto: CreateTransactionDto, id: number) {
-		console.log(createTransactionDto);
-
 		const newTransaction = {
 			name: createTransactionDto.name,
 			amount: createTransactionDto.amount,
@@ -37,7 +35,7 @@ export class TransactionService {
 		);
 
 		if (!wallet) throw new BadRequestException('Кошелёк не найден');
-
+		console.log();
 		wallet.amount =
 			createTransactionDto.type === 'expense'
 				? wallet.amount - createTransactionDto.amount
@@ -47,7 +45,7 @@ export class TransactionService {
 
 		if (!newTransaction)
 			throw new BadRequestException('Что-то пошлло не так...');
-
+		console.log(newTransaction);
 		return await this.transactionRepository.save(newTransaction);
 	}
 
@@ -118,6 +116,32 @@ export class TransactionService {
 			take: limit,
 			skip: (page - 1) * limit,
 		});
+
+		return transactions;
+	}
+
+	async findAllCategoriesSum(id: number, type: string) {
+		const transactions = await this.transactionRepository
+			.createQueryBuilder('transactions')
+			.where('transactions.userId = :id', { id })
+			.where('transactions.type = :type', { type })
+			.innerJoin('transactions.category', 'category')
+			.select('category.title')
+			.addSelect('SUM(transactions.amount)', 'sum')
+			.groupBy('category.title')
+			.getRawMany();
+
+		return transactions;
+	}
+
+	async findAllByTypeSum(id: number) {
+		const transactions = await this.transactionRepository
+			.createQueryBuilder('transactions')
+			.where('transactions.userId = :id', { id })
+			.select('transactions.type')
+			.addSelect('SUM(transactions.amount)', 'sum')
+			.groupBy('transactions.type')
+			.getRawMany();
 
 		return transactions;
 	}

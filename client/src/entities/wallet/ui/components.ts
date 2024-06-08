@@ -1,16 +1,21 @@
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
+	box-sizing: border-box;
 	border: 1px solid black;
 	border-radius: 9px;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 
-	padding: 5px;
-
-	min-width: 200px;
 	width: 200px;
+	height: 60px;
 
-	height: 40px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+
+	padding-inline: 5px;
 
 	font-weight: 600;
+	background-color: lightblue;
+	cursor: pointer;
 `;
